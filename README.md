@@ -19,6 +19,11 @@ Python 独立部署环境。Python 3.5 以后，Windows 下面都有一个 Embed
 ## 使用方式
 
 - 用 CMake 生成 `PyStand.exe` （或者到 Release 里下个现成的）。
+```
+    conda activate py312
+    cmake -G"MinGW Makefiles" .
+    cmake --build .
+```
 - 下载 Python Embedded 版本，放到 `PyStand.exe` 所在目录的 runtime 子目录内。
 - 注意 Python Embedded 如果是 32 位，PyStand 配置 CMake 时也需要指明 `-A Win32`。
 - 在 `PyStand.exe` 所在目录创建 Python 源代码 PyStand.int。
