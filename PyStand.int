@@ -1,13 +1,28 @@
-#  vim: set ts=4 sw=4 tw=0 et ft=python :
-import os
-import sys
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton
 
-msg = 'Hello from %s'%(os.path.abspath(__file__))
-print(msg)
-print()
+app = QApplication([])
 
-for path in sys.path:
-    print('>', path)
+win = QWidget()
+win.setWindowTitle('PyStand')
 
-os.MessageBox(msg)
+layout = QVBoxLayout()
 
+label = QLabel('Hello, World !!')
+label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+layout.addWidget(label)
+
+btn = QPushButton(text='PUSH ME')
+layout.addWidget(btn)
+
+win.setLayout(layout)
+win.resize(400, 300)
+
+btn.clicked.connect(lambda: [
+    print('exit'),
+    win.close(),
+])
+
+win.show()
+
+app.exec()
