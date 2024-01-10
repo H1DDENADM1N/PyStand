@@ -450,7 +450,7 @@ int WINAPI
 WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int show)
 #endif
 {
-	GetAdmin(".\\start.exe", SW_SHOWNORMAL);
+	GetAdmin("PYSTAND", SW_SHOWNORMAL);
 	PyStand ps("runtime");
 	if (ps.DetectScript() != 0)
 	{
