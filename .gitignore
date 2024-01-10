@@ -62,4 +62,5 @@ __pycache__/*
 /publish/*
 /test/ztest_*.cpp
 /ztest_*.cpp
-
+/.history/
+/.github/
