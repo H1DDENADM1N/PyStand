@@ -3,7 +3,7 @@
 // PyStand.cpp -
 //
 // Created by skywind on 2022/02/03
-// Last Modified: 2024/01/10 10:05
+// Last Modified: 2024/01/10 11:55
 //
 //=====================================================================
 #ifdef _MSC_VER
@@ -45,6 +45,14 @@ bool IsProcessRunAsAdmin()
 }
 
 //---------------------------------------------------------------------
+// CloseNotRunAsAdminWindow
+//---------------------------------------------------------------------
+bool CloseNotRunAsAdminWindow()
+{
+	exit(0);
+}
+
+//---------------------------------------------------------------------
 // GetAdmin
 //---------------------------------------------------------------------
 short GetAdmin(LPCSTR Param, int Showcmd)
@@ -57,7 +65,10 @@ short GetAdmin(LPCSTR Param, int Showcmd)
 	HINSTANCE res;
 	res = ShellExecute(NULL, "runas", Path, Param, NULL, Showcmd);
 	if ((unsigned long long)res > 32)
+	{
+		CloseNotRunAsAdminWindow();
 		return 1;
+	}
 	else
 		return 0;
 }
@@ -450,7 +461,7 @@ int WINAPI
 WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int show)
 #endif
 {
-	GetAdmin("PYSTAND", SW_SHOWNORMAL);
+	GetAdmin("", SW_SHOWNORMAL);
 	PyStand ps("runtime");
 	if (ps.DetectScript() != 0)
 	{
