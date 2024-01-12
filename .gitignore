@@ -64,3 +64,8 @@ __pycache__/*
 /ztest_*.cpp
 /.history/
 /.github/
+
+Makefile
+/CMakeFiles/
+*.cmake
+CMakeCache.txt
