@@ -8,7 +8,7 @@ where gcc
 @REM C:\mingw64\bin\gcc.exe
 
 python --version
-@REM Python 3.12.0
+@REM Python 3.12.4
 
 cmake -G "MinGW Makefiles" .
 cmake --build .
