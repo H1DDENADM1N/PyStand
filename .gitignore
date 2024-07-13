@@ -69,3 +69,4 @@ Makefile
 /CMakeFiles/
 *.cmake
 CMakeCache.txt
+/*.7z
