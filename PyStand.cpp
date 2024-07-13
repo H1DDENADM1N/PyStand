@@ -3,7 +3,7 @@
 // PyStand.cpp -
 //
 // Created by skywind on 2022/02/03
-// Last Modified: 2024/01/10 11:55
+// Last Modified: 2024/07/13 17:27
 //
 //=====================================================================
 #ifdef _MSC_VER
@@ -253,6 +253,8 @@ bool PyStand::LoadPython()
 
 	// python dll must be load under "runtime"
 	SetCurrentDirectoryW(runtime.c_str());
+	SetDllDirectoryW(runtime.c_str());
+
 	// LoadLibrary
 	_hDLL = (HINSTANCE)LoadLibraryA("python3.dll");
 	if (_hDLL)
