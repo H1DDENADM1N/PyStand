@@ -3,7 +3,7 @@
 // PyStand.cpp -
 //
 // Created by skywind on 2022/02/03
-// Last Modified: 2024/07/13 17:27
+// Last Modified: 2025/10/24 14:53
 //
 //=====================================================================
 #ifdef _MSC_VER
@@ -255,8 +255,9 @@ bool PyStand::LoadPython()
 	SetCurrentDirectoryW(runtime.c_str());
 	SetDllDirectoryW(runtime.c_str());
 
+	auto pydll = runtime + L"\\python3.dll";
 	// LoadLibrary
-	_hDLL = (HINSTANCE)LoadLibraryA("python3.dll");
+	_hDLL = (HINSTANCE)LoadLibraryW(pydll.c_str());
 	if (_hDLL)
 	{
 		_Py_Main = (t_Py_Main)GetProcAddress(_hDLL, "Py_Main");
@@ -274,7 +275,7 @@ bool PyStand::LoadPython()
 	else if (_Py_Main == NULL)
 	{
 		std::wstring msg = L"Cannot find Py_Main() in:\r\n";
-		msg += runtime + L"\\python3.dll";
+		msg += pydll;
 		MessageBoxW(NULL, msg.c_str(), L"ERROR", MB_OK);
 		return false;
 	}
@@ -415,12 +416,15 @@ const char *init_script =
 	"    sys.stderr = fp\n"
 	"    attached = True\n"
 	"except Exception as e:\n"
-	"    fp = open(os.devnull, 'w')\n"
-	"    sys.stdout = fp\n"
-	"    sys.stderr = fp\n"
 	"    attached = False\n"
+	"    try:\n"
+	"        fp = open(os.devnull, 'w', errors='ignore')\n"
+	"        sys.stdout = fp\n"
+	"        sys.stderr = fp\n"
+	"    except:\n"
+	"        pass\n"
 #endif
-	"for n in ['.', 'lib', 'site-packages']:\n"
+	"for n in ['.', 'lib', 'site-packages', 'runtime']:\n"
 	"    test = os.path.abspath(os.path.join(PYSTAND_HOME, n))\n"
 	"    if os.path.exists(test):\n"
 	"        site.addsitedir(test)\n"
