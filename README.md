@@ -4,7 +4,7 @@ Python 独立部署环境。Python 3.5 以后，Windows 下面都有一个 Embed
 
 ## 特性介绍
 
-- 使用 PyStand + PyQt5 精简版发布 PyQt 程序，打包大小只有 14MB。
+- 使用 PyStand + PySide6 精简版发布 PySide 程序，打包大小只有 23.5MB。
 - 使用 PyStand 发布普通 Python 程序，打包大小仅 5MB。
 
 ## 功能说明
@@ -23,7 +23,7 @@ Python 独立部署环境。Python 3.5 以后，Windows 下面都有一个 Embed
 
 - 用 CMake 生成 `PyStand.exe` （或者到 Release 里下个现成的）。
 ```
-    conda activate py312
+    conda activate py313
     cmake -G "MinGW Makefiles" .
     cmake --build .
 ```
